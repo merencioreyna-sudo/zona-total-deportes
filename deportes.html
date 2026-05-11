@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>DEPORTES | Zona Total</title>
+  <link rel="stylesheet" href="deportes.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="logo">
+    <div class="logo-circle">ZT</div>
+    <span class="logo-text">DEPORTES</span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <button class="nav-btn active">🔥Todos</button>
+    <button class="nav-btn">⚽Fútbol</button>
+    <button class="nav-btn">⚾Béisbol</button>
+    <button class="nav-btn">🏀Baloncesto</button>
+    <button class="nav-btn">🎾Tenis</button>
+    <button class="nav-btn">🥊Boxeo</button>
+    <button class="nav-btn">🏎️Motor</button>
+    <button class="nav-btn">🔥Extreme</button>
+  </div>
+  <button class="btn-home" id="btnHome">🏠 Inicio</button>
+</div>
+
+<div class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+  <div class="hero-badge">🔴 EN VIVO 24/7</div>
+  <h1>Deportes en Directo</h1>
+  <h2>Las mejores jugadas y noticias de la NFL, NBA, MLB, NHL y NCAA</h2>
+  <button class="hero-btn" id="heroPlayBtn">🎬 Ver transmisión en vivo ▶</button>
+</div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>📺 EN VIVO Y DESTACADOS</h2>
+<a href="#" class="view-all">Ver todos →</a>
+  </div>
+  <div class="cards-grid" id="cardsGrid">
+    <!-- Las tarjetas se llenan con JS -->
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>⚽ FÚTBOL</h2>
+<a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="fussballGrid"></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>⚾ BÉISBOL</h2>
+    <a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="beisbolGrid"></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+   <h2>🏀 BALONCESTO</h2>
+<a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="basketballGrid"></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>🎾 TENIS</h2>
+    <a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="tenisGrid"></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>🥊 BOXEO</h2>
+    <a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="boxeoGrid"></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>🏎️ MOTOR</h2>
+    <a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="motorGrid"></div>
+</div>
+
+<div class="container">
+  <div class="section-header">
+    <h2>🔥 EXTREME</h2>
+    <a href="#" class="view-all">Ver más →</a>
+  </div>
+  <div class="cards-grid" id="extremeGrid"></div>
+</div>
+
+<div id="playerOverlay" class="player-overlay" style="display: none;">
+  <button class="close-player" id="closePlayerBtn">✕</button>
+  <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<footer class="site-footer">
+  <p>ZT DEPORTES © 2026 - Todos los derechos reservados</p>
+<p>📧 anelistrabajo@gmail.com</p>
+</footer>
+
+<!-- MODAL PÁGINA COMPLETA -->
+<div id="fullscreenModal" class="fullscreen-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle">Título</h2>
+      <button class="close-modal" id="closeModalBtn">✕</button>
+    </div>
+    <div id="modalCardsGrid" class="modal-cards-grid"></div>
+  </div>
+</div>
+
+<script src="deportes.js"></script>
+</body>
+</html>

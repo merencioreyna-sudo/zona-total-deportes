@@ -1,0 +1,687 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+  background: #ffffff;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+/* ===== BARRA SUPERIOR ===== */
+.top-bar {
+  background: #ffffff;
+  padding: 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 2px solid #dc2626;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-circle {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+  color: white;
+  box-shadow: 0 0 12px rgba(59,130,246,0.3);
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #b0b0c0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn.active {
+  background: #dc2626;
+  color: white;
+}
+
+.nav-btn:hover {
+  background: #1f1f2a;
+  color: white;
+}
+
+.btn-home {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-home:hover {
+  transform: scale(1.02);
+}
+
+/* ===== HERO (BANNER) ===== */
+.hero {
+  position: relative;
+  margin: 24px 32px;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  background-image: url('https://tse4.mm.bing.net/th/id/OIP.dddbnQkPz0GwvTzmGF51ewHaEK?rs=1&pid=ImgDetMain&o=7&rm=3');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 48px 40px;
+  max-width: 600px;
+}
+
+.hero-badge {
+  background: #ef4444;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.hero-content h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.hero-content h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-bottom: 24px;
+}
+
+.hero-btn {
+  background: #dc2626;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+}
+
+.hero-btn:hover {
+  transform: scale(1.02);
+  background: #b91c1c;
+  box-shadow: 0 0 20px rgba(220,38,38,0.6);
+}
+
+/* ===== SECCIONES ===== */
+.container {
+  padding: 0 32px;
+  margin: 56px 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.section-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  border-left: 4px solid #dc2626;
+  padding-left: 16px;
+}
+
+.view-all {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.view-all:hover {
+  opacity: 0.8;
+}
+
+/* ===== TARJETAS ===== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.sport-card {
+  background: #f8fafc;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.sport-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+  border-color: #3b82f6;
+}
+
+.card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: #1e1e2a;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  display: none;
+}
+
+.card-btn {
+  background: #dc2626;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.card-btn:hover {
+  background: #2563eb;
+}
+
+/* ===== REPRODUCTOR ===== */
+.player-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.close-player {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: #ef4444;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+#videoFrame {
+  width: 90%;
+  height: 80%;
+  border: none;
+  border-radius: 20px;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  text-align: center;
+  padding: 32px;
+  background: #0a0a0f;
+  border-top: 1px solid #1f1f2a;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 12px 20px;
+  }
+  .hero {
+    margin: 16px 20px;
+    min-height: 280px;
+  }
+  .hero-content {
+    padding: 32px 24px;
+  }
+  .hero-content h1 {
+    font-size: 24px;
+  }
+  .hero-content h2 {
+    font-size: 16px;
+  }
+  .container {
+    padding: 0 20px;
+    margin: 40px 0;
+  }
+  .section-header h2 {
+    font-size: 20px;
+  }
+  
+  #videoFrame {
+    width: 100%;
+    height: 70%;
+  }
+}
+
+/* Subtítulo del banner con mejor contraste */
+.hero-content h2 {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.4);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(2px);
+}
+
+
+/* ===== CARRUSEL HORIZONTAL EN MÓVIL ===== */
+@media (max-width: 768px) {
+  /* Contenedor del carrusel */
+  .cards-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    grid-template-columns: unset !important;
+    padding-bottom: 8px !important;
+  }
+
+  /* Tarjetas del carrusel */
+  .cards-grid .sport-card {
+    min-width: 200px !important;
+    width: 200px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
+    background: #14141c;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* La imagen ocupa más espacio */
+  .cards-grid .sport-card .card-img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    display: block;
+  }
+
+  /* El contenido de texto debajo de la imagen */
+  .cards-grid .sport-card .card-content {
+    padding: 8px;
+  }
+
+  /* Título más pequeño para que no sature */
+  .cards-grid .sport-card .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Subtítulo más pequeño (ocultamos stats/fecha para ahorrar espacio) */
+  .cards-grid .sport-card .card-subtitle,
+  .cards-grid .sport-card .card-stats {
+    display: none;
+  }
+
+ /* Botón ajustado en móvil */
+.cards-grid .sport-card .card-btn {
+  font-size: 12px !important;
+  padding: 6px 12px !important;
+  margin-top: 6px !important;
+  background: #3b82f6 !important;
+  border-radius: 40px !important;
+  font-weight: 600 !important;
+  width: auto !important;
+  display: inline-block !important;
+  text-align: center !important;
+}
+
+  body, .container, .top-bar {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* ===== MODAL - PÁGINA COMPLETA ===== */
+.fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0f;
+  z-index: 2000;
+  overflow-y: auto;
+  padding: 20px;
+  display: none;
+}
+
+.fullscreen-modal .modal-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fullscreen-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1f1f2a;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.fullscreen-modal .modal-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.close-modal {
+  background: #ef4444;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.close-modal:hover {
+  transform: scale(1.05);
+}
+
+.modal-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.hero-content h1 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Cambiar logo a rojo */
+.logo-circle {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  box-shadow: 0 0 12px rgba(220,38,38,0.3) !important;
+}
+
+/* Cambiar botón de inicio a rojo */
+.btn-home {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+}
+
+/* Cambiar botones "Ver más" y "Ver todos" a rojo */
+.view-all {
+  color: #dc2626 !important;
+}
+
+/* Cambiar texto DEPORTES del logo a rojo */
+.logo-text {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Cambiar títulos de secciones a rojo */
+.section-header h2 {
+  color: #dc2626 !important;
+  border-left-color: #dc2626 !important;
+}
+
+/* Cambiar borde de tarjetas al pasar el mouse a rojo */
+.sport-card:hover {
+  border-color: #dc2626 !important;
+  box-shadow: 0 12px 20px rgba(220,38,38,0.2) !important;
+}
+
+/* Borde rojo fijo en todas las tarjetas */
+.sport-card {
+  border: 1px solid #dc2626 !important;
+}
+
+/* Cambiar color del título principal del modal a rojo */
+#modalTitle {
+  color: #dc2626 !important;
+}
+
+
+/* ===== MODAL - PÁGINA COMPLETA ===== */
+.fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0f;
+  z-index: 2000;
+  overflow-y: auto;
+  display: none;
+}
+
+.fullscreen-modal .modal-content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.fullscreen-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #1f1f2a;
+  background: #0a0a0f;
+}
+
+.fullscreen-modal .modal-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: #dc2626;
+}
+
+.close-modal {
+  background: #ef4444;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-cards-grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Cuando hay iframe (noticia/video) ocupa todo el ancho */
+.modal-cards-grid:has(iframe) {
+  display: block;
+  padding: 0;
+}
+
+.modal-cards-grid iframe {
+  width: 100%;
+  height: 85vh;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .fullscreen-modal .modal-header {
+    padding: 12px 16px;
+  }
+  .fullscreen-modal .modal-header h2 {
+    font-size: 16px;
+  }
+  .close-modal {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+  .modal-cards-grid {
+    padding: 16px;
+    gap: 16px;
+  }
+  .modal-cards-grid iframe {
+    height: 75vh;
+  }
+}
+
+
+/* CORRECCIÓN PARA MÓVIL: botón rojo y tarjetas blancas */
+@media (max-width: 768px) {
+  /* Botón "Ver ahora" en móvil - rojo */
+  .cards-grid .sport-card .card-btn {
+    background: #dc2626 !important;
+    color: white !important;
+  }
+  
+  /* Tarjetas en móvil - fondo blanco, texto oscuro */
+  .cards-grid .sport-card {
+    background: #ffffff !important;
+    border: 1px solid #dc2626 !important;
+  }
+  
+  /* Títulos de tarjetas en móvil - color oscuro */
+  .cards-grid .sport-card .card-title {
+    color: #1e293b !important;
+  }
+  
+  /* Texto de fecha en móvil - gris */
+  .cards-grid .sport-card .card-subtitle {
+    color: #64748b !important;
+  }
+}
+
+/* Texto EN VIVO 24/7 en blanco */
+.hero-badge {
+  color: #ffffff !important;
+}
+
+
+/* Rojo más fuerte para el badge y botón del hero */
+.hero-badge {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+.hero-btn {
+  background: #dc2626 !important;
+  box-shadow: 0 4px 12px rgba(220,38,38,0.4) !important;
+}
+
+.hero-btn:hover {
+  background: #b91c1c !important;
+}
+
+/* Footer textos en blanco */
+.site-footer p {
+  color: #ffffff !important;
+}
