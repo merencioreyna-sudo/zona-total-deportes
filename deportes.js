@@ -73,9 +73,21 @@ function renderizarCard(item) {
         <span style="position: absolute; top: 8px; right: 8px; background: ${badgeColor}; color: white; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 20px; z-index: 5;">${badgeTexto}</span>
       </div>
       <div class="card-content">
-        <div class="card-title">${item.titulo}</div>
-        <div class="card-subtitle">${item.fecha || ''}</div>
-        <button class="card-btn" onclick="abrirModalTarjeta('${item.titulo}', '${item.imagen}', '${item.url}', '${item.fecha}', '${item.tipo}')">Ver ahora ▶</button>
+        <div class="card-title">${item.titulo}</div><div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+
+  <div style="
+    font-size:11px;
+    color:#dc2626;
+    font-weight:600;
+  ">
+    ${item.fecha || ''}
+  </div>
+
+  <button class="card-btn" onclick="abrirModalTarjeta('${item.titulo}', '${item.imagen}', '${item.url}', '${item.fecha}', '${item.tipo}')">
+    Ver ahora ▶
+  </button>
+
+</div>
       </div>
     </div>
   `;
@@ -84,7 +96,7 @@ function renderizarCard(item) {
 fetch(SHEET_URL)
   .then(res => res.text())
   .then(csv => {
-    const lineas = csv.trim().split('\n').slice(1);
+    const lineas = csv.match(/(?:[^\n"]+|"[^"]*")+/g).slice(1);
     liveItems = [];
     futbolItems = [];
     baloncestoItems = [];
@@ -93,7 +105,7 @@ fetch(SHEET_URL)
     motorItems = [];
     extremeItems = [];
 
-    for (let i = 0; i < lineas.length; i++) {
+    for (let i = lineas.length - 1; i >= 0; i--) {
       const linea = lineas[i].trim();
       if (linea === "") continue;
 
@@ -107,10 +119,20 @@ fetch(SHEET_URL)
       const fecha = partes[4]?.trim() || "";
             const categoria = partes[5]?.trim()?.toLowerCase() || "";
       const etiqueta = partes[6]?.trim() || "";
+      const descripcion = partes.slice(7).join(',').replace(/^"|"$/g, '').trim() || "Sin descripción disponible.";
 
       if (!url) continue;
 
-      const item = { tipo, titulo, url, imagen, fecha, categoria, etiqueta };
+      const item = { 
+  tipo, 
+  titulo, 
+  url, 
+  imagen, 
+  fecha, 
+  categoria, 
+  etiqueta,
+  descripcion
+};
 
       // Debug: ver qué items llegan
       console.log('Item leído:', item.titulo, 'categoria:', item.categoria, 'etiqueta:', item.etiqueta);
@@ -129,8 +151,8 @@ console.log("Boxeo items:", boxeoItems);
 
     // Renderizar secciones
     cardsGrid.innerHTML = liveItems.length ? liveItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido en vivo</p>';
-    fussballGrid.innerHTML = futbolItems.length ? futbolItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de fútbol</p>';
-    basketballGrid.innerHTML = baloncestoItems.length ? baloncestoItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de baloncesto</p>';
+    fussballGrid.innerHTML = futbolItems.length ? futbolItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de fútbol</p>';
+    basketballGrid.innerHTML = baloncestoItems.length ? baloncestoItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de baloncesto</p>';
     
     // Nuevas secciones
     const tenisGrid = document.getElementById('tenisGrid');
@@ -138,13 +160,12 @@ console.log("Boxeo items:", boxeoItems);
     const motorGrid = document.getElementById('motorGrid');
     const extremeGrid = document.getElementById('extremeGrid');
     
-    if (tenisGrid) tenisGrid.innerHTML = tenisItems.length ? tenisItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de tenis</p>';
-    if (boxeoGrid) boxeoGrid.innerHTML = boxeoItems.length ? boxeoItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de boxeo</p>';
-    if (motorGrid) motorGrid.innerHTML = motorItems.length ? motorItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de motor</p>';
-   if (extremeGrid) extremeGrid.innerHTML = extremeItems.length ? extremeItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido extreme</p>';
+    if (tenisGrid) tenisGrid.innerHTML = tenisItems.length ? tenisItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de tenis</p>';
+    if (boxeoGrid) boxeoGrid.innerHTML = boxeoItems.length ? boxeoItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de boxeo</p>';
+    if (motorGrid) motorGrid.innerHTML = motorItems.length ? motorItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de motor</p>';
+   if (extremeGrid) extremeGrid.innerHTML = extremeItems.length ? extremeItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido extreme</p>';
 
-    const beisbolGrid = document.getElementById('beisbolGrid');
-    if (beisbolGrid) beisbolGrid.innerHTML = beisbolItems.length ? beisbolItems.map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de béisbol</p>';
+    const beisbolGrid = document.getElementById('beisbolGrid');if (beisbolGrid) beisbolGrid.innerHTML = beisbolItems.length ? beisbolItems.slice(0,6).map(renderizarCard).join('') : '<p style="color:white; text-align:center;">No hay contenido de béisbol</p>';
   })
 
   .catch(err => {
@@ -300,17 +321,63 @@ function abrirModalTarjeta(titulo, imagen, url, fecha, tipo, categoriaItems, cat
       </div>
     `;
   } 
-  else if (tipo === 'noticia') {
-    modalCardsGrid.innerHTML = `
-      <div style="width: 100%; height: 100%; display: flex; flex-direction: column; background-color: #fff; position: relative;">
-        <iframe src="${url}" 
-                style="width: 100%; height: 100%; border: none;" 
-                title="${titulo}">
-        </iframe>
-        
-      </div>
-    `;
-  }
+ else if (tipo === 'noticia') {
+
+  const noticia = [...liveItems, ...futbolItems, ...baloncestoItems, ...tenisItems, ...boxeoItems, ...motorItems, ...extremeItems, ...beisbolItems]
+    .find(n => n.titulo === titulo);
+
+  modalCardsGrid.innerHTML = `
+  
+    <div style="
+      width: 100%;
+      background: #ffffff;
+      color: #111827;
+      border-radius: 20px;
+      overflow-y: auto;
+      padding: 24px;
+    ">
+
+      <img 
+        src="${imagen}" 
+        style="
+          width: 100%;
+          max-height: 400px;
+          object-fit: cover;
+          border-radius: 16px;
+          margin-bottom: 20px;
+        "
+      >
+
+      <h2 style="
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #dc2626;
+      ">
+        ${titulo}
+      </h2>
+
+      <p style="
+        color: #64748b;
+        margin-bottom: 20px;
+        font-size: 14px;
+      ">
+        ${fecha}
+      </p>
+
+      <p style="
+  font-size: 17px;
+  line-height: 1.8;
+  color: #1e293b;
+">
+  ${(noticia?.descripcion || 'Sin descripción disponible.')
+    .replace(/\r?\n/g, '<br><br>')}
+</p>
+
+    </div>
+    
+  `;
+}
 
   modalCardsGrid.style.display = "flex";
   modalCardsGrid.style.flexDirection = "column";
@@ -329,9 +396,34 @@ function regresarACategoria(titulo, items) {
 
 // ========== ASEGURAR QUE EL BOTÓN CERRAR SIEMPRE FUNCIONE ==========
 function cerrarModal() {
+
+  // Detectar si estamos dentro de una noticia
+  const viendoContenido =
+  modalCardsGrid.innerHTML.includes('<iframe') ||
+  modalCardsGrid.innerHTML.includes('line-height: 1.8');
+
+  // Si estamos viendo noticia → volver al catálogo
+  if (viendoContenido && ultimosItems && ultimosItems.length > 0) {
+
+    abrirModal(
+      ultimaCategoria,
+      ultimoTitulo,
+      ultimosItems
+    );
+
+    return;
+  }
+
+  // Si estamos en el catálogo → cerrar completamente
   fullscreenModal.style.display = 'none';
   document.body.style.overflow = '';
+
+  // Limpiar datos
+  ultimaCategoria = null;
+  ultimoTitulo = null;
+  ultimosItems = null;
 }
+
 
 // Eliminar eventos antiguos para evitar duplicados
 const oldCloseBtn = document.getElementById('closeModalBtn');
