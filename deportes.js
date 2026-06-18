@@ -37,7 +37,7 @@ function abrirVideo(url) {
 
 // Hero play
 heroPlayBtn.addEventListener('click', () => {
-  const heroVideo = "https://www.youtube.com/embed/7NPsqFA14eQ";
+  const heroVideo = "https://www.youtube.com/embed/oAGsu49Ct0A";
   abrirVideo(heroVideo);
 });
 
